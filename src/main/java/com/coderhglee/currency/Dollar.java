@@ -1,14 +1,14 @@
 package com.coderhglee.currency;
 
 public class Dollar {
-    private int amount;
+    private final int amount;
 
     public Dollar(int amount) {
         this.amount = amount;
     }
 
-    public void times(int multiplier) {
-        this.amount *= multiplier;
+    public Dollar times(int multiplier) {
+        return new Dollar(this.amount * multiplier);
     }
 
     public int amount() {

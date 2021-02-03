@@ -10,7 +10,8 @@ class MoneyTest {
     @Test
     void dollarTimes() {
         Dollar five = new Dollar(5);
-        five.times(2);
-        assertThat(five.amount()).isEqualTo(10);
+
+        assertThat(five.times(2).amount()).isEqualTo(10);
+        assertThat(five.times(3).amount()).isEqualTo(15);
     }
 }
