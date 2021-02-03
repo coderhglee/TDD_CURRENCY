@@ -14,4 +14,11 @@ class MoneyTest {
         assertThat(five.times(2).amount()).isEqualTo(10);
         assertThat(five.times(3).amount()).isEqualTo(15);
     }
+
+    @DisplayName("달러의 값을 비교 가능해야한다.")
+    @Test
+    void dollarEquality() {
+        assertThat(new Dollar(5)).isEqualTo(new Dollar(5));
+        assertThat(new Dollar(5)).isNotEqualTo(new Dollar(7));
+    }
 }

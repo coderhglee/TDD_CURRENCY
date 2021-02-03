@@ -9,10 +9,17 @@
 
 [x] $5 * 2 = $10
 
-[] amount를 private으로 만들기
+[x] amount를 private으로 만들기
 
 [x] Dollar 부작용(side effect)?
 - Dollar에 대해 연산을 수행한 후에 해당 Dollar의 값이 바뀌는 부작용
 
 [] Money 반올림?
 
+[x] equals()
+
+[x] hashCode()
+
+[] Equal null
+
+[] Equal object
