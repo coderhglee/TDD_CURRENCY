@@ -29,4 +29,11 @@ class MoneyTest {
     void compareDollarAndFranc() {
         assertThat(Money.dollar(5)).isNotEqualTo(Money.franc(5));
     }
+
+    @DisplayName("통화 단위")
+    @Test
+    void testCurrency() {
+        assertThat(Money.dollar(5).currency()).isEqualTo("USD");
+        assertThat(Money.franc(5).currency()).isEqualTo("CHF");
+    }
 }
