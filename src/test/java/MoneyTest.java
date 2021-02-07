@@ -1,4 +1,7 @@
+import com.coderhglee.currency.Bank;
+import com.coderhglee.currency.Expression;
 import com.coderhglee.currency.Money;
+import com.coderhglee.currency.Sum;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +47,27 @@ class MoneyTest {
     @DisplayName("$5 + $5 = $10")
     @Test
     void testSimpleAddition() {
-        Money sum = Money.dollar(5).plus(Money.dollar(5));
-        assertThat(sum).isEqualTo(Money.dollar(10));
+        Money five = Money.dollar(5);
+        Expression sum = five.plus(five);
+        Bank bank = new Bank();
+        Money reduced = bank.reduce(sum, "USD");
+        assertThat(reduced).isEqualTo(Money.dollar(10));
+    }
+
+    @Test
+    void testPlusReturnsSum() {
+        Money five = Money.dollar(5);
+        Expression result = five.plus(five);
+        Sum sum = (Sum) result;
+        assertThat(five).isEqualTo(sum.augend());
+        assertThat(five).isEqualTo(sum.addend());
+    }
+
+    @Test
+    void testReduceSum() {
+        Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
+        Bank bank = new Bank();
+        Money result = bank.reduce(sum, "USD");
+        assertThat(result).isEqualTo(Money.dollar(7));
     }
 }
