@@ -2,24 +2,30 @@ package com.coderhglee.currency;
 
 import java.util.Objects;
 
-public abstract class Money {
+public class Money {
     protected int amount;
     protected String currency;
 
-    public static Money dollar(int amount) {
-        return new Dollar(amount,"USD");
+    public Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
     }
 
-    public static Franc franc(int amount) {
-        return new Franc(amount,"CHF");
+    public static Money dollar(int amount) {
+        return new Money(amount, "USD");
+    }
+
+    public static Money franc(int amount) {
+        return new Money(amount, "CHF");
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+//        if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return amount == money.amount;
+        return amount == money.amount
+                && currency.equals(money.currency);
     }
 
     @Override
@@ -27,7 +33,11 @@ public abstract class Money {
         return Objects.hash(amount);
     }
 
-    public abstract Money times(int multiplier);
+    public Money times(int multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
 
-    public abstract String currency();
+    public String currency() {
+        return currency;
+    }
 }

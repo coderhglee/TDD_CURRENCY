@@ -1,5 +1,3 @@
-import com.coderhglee.currency.Dollar;
-import com.coderhglee.currency.Franc;
 import com.coderhglee.currency.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,5 +33,11 @@ class MoneyTest {
     void testCurrency() {
         assertThat(Money.dollar(5).currency()).isEqualTo("USD");
         assertThat(Money.franc(5).currency()).isEqualTo("CHF");
+    }
+
+    @DisplayName("통화 단위 동치성 테스트")
+    @Test
+    void testDifferentClassEquality() {
+        assertThat(new Money(10, "CHF")).isEqualTo(new Money(10, "CHF"));
     }
 }
