@@ -40,4 +40,11 @@ class MoneyTest {
     void testDifferentClassEquality() {
         assertThat(new Money(10, "CHF")).isEqualTo(new Money(10, "CHF"));
     }
+
+    @DisplayName("$5 + $5 = $10")
+    @Test
+    void testSimpleAddition() {
+        Money sum = Money.dollar(5).plus(Money.dollar(5));
+        assertThat(sum).isEqualTo(Money.dollar(10));
+    }
 }

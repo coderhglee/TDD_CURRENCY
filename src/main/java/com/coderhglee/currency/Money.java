@@ -22,7 +22,7 @@ public class Money {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
         return amount == money.amount
                 && currency.equals(money.currency);
@@ -39,5 +39,9 @@ public class Money {
 
     public String currency() {
         return currency;
+    }
+
+    public Money plus(Money addend) {
+        return new Money(amount + addend.amount, currency);
     }
 }
